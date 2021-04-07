@@ -1,7 +1,9 @@
 ---
 - name: Install required system packages.
   apt:
-    name: apt-transport-https
+    name:
+      - gpg-agent
+      - apt-transport-https
     state: present
     cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
 
