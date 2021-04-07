@@ -16,8 +16,9 @@
   apt_repository:
     repo: deb https://dtcooper.github.io/raspotify raspotify main
     state: present
+  register: raspotify_repo_result
 
-- name: Install Raspotify.
+- name: Install Raspotify package.
   apt:
     name: raspotify
-    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
+    update_cache: "{{ raspotify_repo_result.changed }}"
