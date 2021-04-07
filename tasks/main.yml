@@ -21,4 +21,4 @@
 - name: Install Raspotify package.
   apt:
     name: raspotify
-    update_cache: "{{ raspotify_repo_result.changed }}"
+    update_cache: true
