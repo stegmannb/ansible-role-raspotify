@@ -1,4 +1,21 @@
 ---
-- name: Example task
-  debug:
-    msg: Running example task
+- name: Install required system packages.
+  apt:
+    name: apt-transport-https
+    state: present
+    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
+
+- name: Add Raspotify GPG key.
+  apt_key:
+    url: https://dtcooper.github.io/raspotify/key.asc
+    state: present
+
+- name: Add Raspotify apt repository.
+  apt_repository:
+    repo: deb https://dtcooper.github.io/raspotify raspotify main
+    state: present
+
+- name: Install Raspotify.
+  apt:
+    name: raspotify
+    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
