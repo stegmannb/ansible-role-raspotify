@@ -22,6 +22,7 @@
   apt:
     name: "{{ 'raspotify:armhf' if ansible_machine == 'aarch64' else 'raspotify' }}"
     update_cache: true
+  register: apt_install_result
 
 - name: Update configuration file.
   template:
@@ -30,3 +31,18 @@
     owner: root
     group: root
     mode: "0644"
+  notify: Restart the raspotify service.
+
+- name: Enable the raspotify service.
+  systemd:
+    name: raspotify.service
+    state: started
+    enabled: true
+  when: raspotify_service
+
+- name: Disable the raspotify service.
+  systemd:
+    name: raspotify.service
+    state: started
+    enabled: true
+  when: not raspotify_service

@@ -1,4 +1,5 @@
 ---
+raspotify_service: true
 raspotify_device_name:
 raspotify_device_type:
 raspotify_bitrate:
