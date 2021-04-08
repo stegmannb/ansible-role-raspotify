@@ -1,1 +1,9 @@
 ---
+raspotify_device_name:
+raspotify_device_type:
+raspotify_bitrate:
+raspotify_librespot_options:
+raspotify_spotify_username:
+raspotify_spotify_password:
+raspotify_librespot_cache_args:
+raspotify_librespot_backend_args:

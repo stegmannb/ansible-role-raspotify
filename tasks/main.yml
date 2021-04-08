@@ -20,5 +20,13 @@
 
 - name: Install Raspotify package.
   apt:
-    name: raspotify
+    name: "{{ 'raspotify:armhf' if ansible_machine == 'aarch64' else 'raspotify' }}"
     update_cache: true
+
+- name: Update configuration file.
+  template:
+    src: templates/raspotify.j2
+    dest: /etc/default/raspotify
+    owner: root
+    group: root
+    mode: "0644"
